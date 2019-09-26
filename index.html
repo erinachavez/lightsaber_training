@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-146842391-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-146842391-1');
+		</script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src='libraries/p5.min.js'></script>
+		<script src='libraries/p5.dom.min.js'></script>
+		<script src='libraries/p5.sound.min.js'></script>
+		<script src='game.js'></script>
+
+		<style>
+			@font-face{font-family: 'SW Title'; src: url('fonts/SWCrawlTitle.ttf');}
+			@font-face{font-family: 'SW Body'; src: url('fonts/SWCrawlBody.ttf');}
+			body{padding: 0 0 75px 0; margin: 0; background-image: url('images/stars.jpg');}
+			canvas{display: none;}
+			.container{display: flex; justify-content: center; margin: 25px 0;}
+
+			h1{font-family: 'SW Title'; color: #ffd700; margin: 25px 0; text-align: center; letter-spacing: 2px; font-size: 75px;}
+			 p{font-family: 'SW Body'; color: #ffd700; margin: 0; text-align: center; font-size: 25px;}
+			hr{width: 75vw; border-bottom: #ffd700 solid 5px; margin: 75px auto;}
+
+
+			#page1{}
+				#ls_form{margin: 50px auto 0 auto; width: 92vh;}
+					#ls_form input{visibility: hidden;}
+					#ls_form label{margin: 0 5vh;}
+					#ls_form label:hover{cursor: pointer; opacity: .75;}
+						#ls_form label img{height: 65vh;}
+					#ls_form button{background: none; border: 5px solid #ffd700; padding: 10px; display: block; margin: 50px auto 0 auto;}
+					#ls_form button:hover{background-color: #ffd700;}
+						#ls_form button h1{margin: 0; font-size: 50px;}
+						#ls_form button:hover h1{color: #000000;}
+
+				.design{text-align: justify; width: 75vw; margin: 0 auto;}
+			#page2_light{display: none;}
+			#page2_dark{display: none;}
+				.container img:first-child{margin-right: 75px;}
+				.page2Form button{background: none; border: 5px solid #ffd700; padding: 10px; display: block; margin: 50px auto;}
+				.page2Form button:hover{background-color: #ffd700;}
+					.page2Form button h1{margin: 0; font-size: 50px; text-transform: lowercase;}
+					.page2Form button:hover h1{color: #000000;}
+		</style>
+	</head>
+	<body>
+		<div id='page1'>
+			<h1 id='title'>lightsaber Training</h1>
+			<p id='subhead'>Time for you to practice, it is. Pick a lightsaber.</p>
+			<form id='ls_form' onsubmit='showRules()' method='POST'>
+				<input type='radio' name='lightsaber' id='anakin' required><label for='rey'   id='l1' onclick='lightsaber("rey")'  ><img src='images/rey.png'   ></label>
+				<input type='radio' name='lightsaber' id='luke'   required><label for='luke'  id='l2' onclick='lightsaber("luke")' ><img src='images/luke.png'  ></label>
+				<input type='radio' name='lightsaber' id='vader'  required><label for='vader' id='l3' onclick='lightsaber("vader")'><img src='images/vader.png' ></label>
+				<input type='radio' name='lightsaber' id='kylo'   required><label for='kylo'  id='l4' onclick='lightsaber("kylo")' ><img src='images/kylo.png'  ></label>
+				<button type='submit' class='button'><h1>Continue</h1></button>
+			</form>
+			<hr>
+			<h1>My Design Process</h1>
+			<p class='design'>In my previous assignment, I felt slightly guilty that I didn't get the time to actually utilize the lightsaber that I prompt a player to choose at the start of the game. Thus, this version of Whack-A-Mole has grown from the want to actually give the user a functioning lightsaber.</p>
+			<br>
+			<p class='design'>For the most part, I stuck to Whack-A-Mole's roots when designing this game. However, the key difference here is that the player is awarded points and misses based on which lightsaber they choose at the very start. If they choose a "Light Side" lightsaber, then they are awarded points for striking dark side users, and misses for strking light side users&mdash; vice-versa if the "Dark Side" is chosen. Programming this provided an enjoyable amount of challenge!</p>
+		</div>
+
+		<div id='page2_light'>
+			<h1>You have chosen the light side!</h1>
+			<p>Your task is to battle the following dark forces.</p>
+			<div class='container'><img src='images/stormtrooper.png'><img src='images/sith.png'></div>
+			<p>Be careful to not strike those on your side!</p>
+			<div class='container'><img src='images/yoda.png'><img src='images/r2d2.png'></div>
+			<form class='page2Form' onsubmit='showCanvas()' method='POST'>
+				<button type='submit' class='button'><h1>Start</h1></button>
+			</form>
+		</div>
+
+		<div id='page2_dark'>
+			<h1>You have chosen the dark side!</h1>
+			<p>Your task is to battle the following light forces.</p>
+			<div class='container'><img src='images/yoda.png'><img src='images/r2d2.png'></div>
+			<p>Be careful to not strike those on your side!</p>
+			<div class='container'><img src='images/stormtrooper.png'><img src='images/sith.png'></div>
+			<p></p>
+			<form class='page2Form' onsubmit='showCanvas()' method='POST'>
+				<button type='submit' class='button'><h1>Start</h1></button>
+			</form>
+		</div>
+	</body>
+</html>
